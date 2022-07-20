@@ -3,6 +3,8 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./register.css";
+import Loading from "./Loading";
+import ErrorMessage from "./Errormessage";
 function LoginScreen() {
   const navigate = useNavigate();
   const [loading, setloading] = useState(false);
@@ -48,6 +50,20 @@ function LoginScreen() {
       <div class="form">
         <div class="title">Welcome</div>
         <div class="subtitle">Let's create your account!</div>
+        {loading ? <Loading /> : ""}
+        {error ? (
+          <h1
+            style={{
+              color: "black",
+              backgroundColor: "red",
+              borderRadius: "15px",
+            }}
+          >
+            Invalid user credentials !!!
+          </h1>
+        ) : (
+          ""
+        )}
         <div class="input-container ic1">
           <input
             onChange={(e) => setEmail(e.target.value)}

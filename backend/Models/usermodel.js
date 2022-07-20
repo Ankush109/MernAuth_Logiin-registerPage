@@ -17,7 +17,7 @@ const userschema = new mongoose.Schema({
     validate: [validator.isEmail, "please enter a valid email"],
   },
   Dateofbirth: {
-    type: Number,
+    type: String,
   },
   Gender: {
     type: String,

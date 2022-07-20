@@ -1,13 +1,12 @@
 const mongoose = require("mongoose");
-const connectdatabase = () => {
-  //connecting to mongodb database
-  mongoose
-    .connect("mongodb://localhost:27017/signupassigmnet")
-    .then((data) => {
-      console.log(`mongodb connected with server ${data.connection.host}`);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+const connectdatabase = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URI);
+
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(`Error: ${error.message}`);
+    process.exit();
+  }
 };
 module.exports = { connectdatabase };
